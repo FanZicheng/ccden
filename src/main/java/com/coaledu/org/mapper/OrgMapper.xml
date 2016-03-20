@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coaledu.org.mapper.OrgMapper" >
+  <resultMap id="BaseResultMap" type="com.coaledu.org.model.Org" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="manager_type" property="managerType" jdbcType="INTEGER" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="att1" property="att1" jdbcType="VARCHAR" />
+    <result column="att2" property="att2" jdbcType="VARCHAR" />
+    <result column="att3" property="att3" jdbcType="VARCHAR" />
+    <result column="att4" property="att4" jdbcType="VARCHAR" />
+    <result column="att5" property="att5" jdbcType="VARCHAR" />
+    <result column="att6" property="att6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, manager_type, order_num, tid, tname, address, phone, pid, att1, att2, att3, 
+    att4, att5, att6
+  </sql>
+  <insert id="addOrg" parameterType="com.coaledu.org.model.Org" >
+    insert into t_org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="managerType != null" >
+        manager_type,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="tname != null" >
+        tname,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="att1 != null" >
+        att1,
+      </if>
+      <if test="att2 != null" >
+        att2,
+      </if>
+      <if test="att3 != null" >
+        att3,
+      </if>
+      <if test="att4 != null" >
+        att4,
+      </if>
+      <if test="att5 != null" >
+        att5,
+      </if>
+      <if test="att6 != null" >
+        att6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="managerType != null" >
+        #{managerType,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="att1 != null" >
+        #{att1,jdbcType=VARCHAR},
+      </if>
+      <if test="att2 != null" >
+        #{att2,jdbcType=VARCHAR},
+      </if>
+      <if test="att3 != null" >
+        #{att3,jdbcType=VARCHAR},
+      </if>
+      <if test="att4 != null" >
+        #{att4,jdbcType=VARCHAR},
+      </if>
+      <if test="att5 != null" >
+        #{att5,jdbcType=VARCHAR},
+      </if>
+      <if test="att6 != null" >
+        #{att6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteOrgById" parameterType="java.lang.Integer" >
+    delete from t_org
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateOrg" parameterType="com.coaledu.org.model.Org" >
+    update t_org
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="managerType != null" >
+        manager_type = #{managerType,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null" >
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="att1 != null" >
+        att1 = #{att1,jdbcType=VARCHAR},
+      </if>
+      <if test="att2 != null" >
+        att2 = #{att2,jdbcType=VARCHAR},
+      </if>
+      <if test="att3 != null" >
+        att3 = #{att3,jdbcType=VARCHAR},
+      </if>
+      <if test="att4 != null" >
+        att4 = #{att4,jdbcType=VARCHAR},
+      </if>
+      <if test="att5 != null" >
+        att5 = #{att5,jdbcType=VARCHAR},
+      </if>
+      <if test="att6 != null" >
+        att6 = #{att6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getOrgById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_org
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="listAllOrgId" resultType="java.lang.Integer">
+    select id from t_org
+  </select>
+  <select id="getOrgTree" resultType="com.coaledu.basic.dto.TreeDto">
+    select id, name, pid from t_org
+  </select>
+  <select id="getOrgByPidAndTypeId" parameterType="java.util.Map" resultType="com.coaledu.org.model.Org">
+    select 
+    <include refid="Base_Column_List" />
+    from t_org where 1 = 1 
+    <if test="pid != null" >
+      and pid = #{pid,jdbcType=INTEGER} 
+    </if>
+    <if test="tid != null" >
+      and tid = #{tid,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="getAllOrg" resultType="com.coaledu.org.model.Org">
+    select 
+    <include refid="Base_Column_List" />
+    from t_org
+  </select>
+  <select id="getOrgNumsByType" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) from t_org
+  </select>
+  <select id="getChildNumByPidAndTid" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) from t_org where 1 = 1 
+    <if test="pid != null" >
+      and pid = #{pid,jdbcType=INTEGER} 
+    </if>
+    <if test="tid != null" >
+      and tid = #{tid,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="getOrgMaxOrderByPid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select max(order_num) from t_org where 1 = 1 and pid = #{pid,jdbcType=INTEGER}
+  </select>
+</mapper>

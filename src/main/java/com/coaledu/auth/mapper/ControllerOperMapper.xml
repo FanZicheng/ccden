@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coaledu.auth.mapper.ControllerOperMapper" >
+  <resultMap id="BaseResultMap" type="com.coaledu.auth.model.ControllerOper" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="method_name" property="methodName" jdbcType="VARCHAR" />
+    <result column="indexPos" property="indexpos" jdbcType="INTEGER" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="rsn" property="rsn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, method_name, indexPos, sn, rid, rsn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_controller_oper
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_controller_oper
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.coaledu.auth.model.ControllerOper" >
+    insert into t_controller_oper (id, name, method_name, 
+      indexPos, sn, rid, 
+      rsn)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, 
+      #{indexpos,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{rid,jdbcType=INTEGER}, 
+      #{rsn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coaledu.auth.model.ControllerOper" >
+    insert into t_controller_oper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="methodName != null" >
+        method_name,
+      </if>
+      <if test="indexpos != null" >
+        indexPos,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="rsn != null" >
+        rsn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null" >
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexpos != null" >
+        #{indexpos,jdbcType=INTEGER},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="rsn != null" >
+        #{rsn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coaledu.auth.model.ControllerOper" >
+    update t_controller_oper
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null" >
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexpos != null" >
+        indexPos = #{indexpos,jdbcType=INTEGER},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="rid != null" >
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="rsn != null" >
+        rsn = #{rsn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coaledu.auth.model.ControllerOper" >
+    update t_controller_oper
+    set name = #{name,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      indexPos = #{indexpos,jdbcType=INTEGER},
+      sn = #{sn,jdbcType=VARCHAR},
+      rid = #{rid,jdbcType=INTEGER},
+      rsn = #{rsn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

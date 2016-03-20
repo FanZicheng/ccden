@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coaledu.org.mapper.OrgTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.coaledu.org.model.OrgType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, sn
+  </sql>  
+  <insert id="addOrgType" parameterType="com.coaledu.org.model.OrgType" >
+    insert into t_org_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteOrgTypeById" parameterType="java.lang.Integer" >
+    delete from t_org_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>  
+  <update id="updateOrgType" parameterType="com.coaledu.org.model.OrgType" >
+    update t_org_type
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getAllOrgType" resultType="com.coaledu.org.model.OrgType">
+    select 
+    <include refid="Base_Column_List" />
+    from t_org_type
+  </select>
+  <select id="getOrgTypeById" resultType="com.coaledu.org.model.OrgType" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_org_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getChildOrgTypeByTypeId" resultType="com.coaledu.basic.dto.OrgTypeDto" parameterType="java.lang.Integer" >
+    select ot2.id as cid,ot2.name as cname,otr.num 
+    from t_org_type ot, t_org_type_rule otr, t_org_type ot2 
+    where ot.id=otr.pid and ot2.id=otr.cid and ot.id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

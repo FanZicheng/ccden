@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coaledu.auth.mapper.ControllerResMapper" >
+  <resultMap id="BaseResultMap" type="com.coaledu.auth.model.ControllerRes" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="psn" property="psn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, cname, order_num, sn, pid, psn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_controller_res
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_controller_res
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.coaledu.auth.model.ControllerRes" >
+    insert into t_controller_res (id, name, cname, 
+      order_num, sn, pid, 
+      psn)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
+      #{psn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coaledu.auth.model.ControllerRes" >
+    insert into t_controller_res
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="psn != null" >
+        psn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="psn != null" >
+        #{psn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coaledu.auth.model.ControllerRes" >
+    update t_controller_res
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="psn != null" >
+        psn = #{psn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coaledu.auth.model.ControllerRes" >
+    update t_controller_res
+    set name = #{name,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      sn = #{sn,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      psn = #{psn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

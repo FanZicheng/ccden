@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coaledu.org.mapper.OrgTypeRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.coaledu.org.model.OrgTypeRule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cid, num, pid
+  </sql>
+  <insert id="addOrgTypeRule" parameterType="com.coaledu.org.model.OrgTypeRule" >
+    insert into t_org_type_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteOrgTypeRuleById" parameterType="java.util.HashMap" >
+    delete from t_org_type_rule
+    where pid = #{pid,jdbcType=INTEGER} and cid = #{cid,jdbcType=INTEGER} 
+  </delete>
+  <update id="updateOrgTypeRule" parameterType="com.coaledu.org.model.OrgTypeRule" >
+    update t_org_type_rule set num = #{num,jdbcType=INTEGER}
+    where pid = #{pid,jdbcType=INTEGER} and cid = #{cid,jdbcType=INTEGER} 
+  </update>
+  <select id="getOrgTypeRuleById" resultType="com.coaledu.org.model.OrgTypeRule" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_org_type_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>  
+  <select id="getOrgTypeRuleNum" resultType="java.lang.Integer" parameterType="java.util.HashMap" >
+    select num from t_org_type_rule where cid = #{cid,jdbcType=INTEGER} and pid = #{pid,jdbcType=INTEGER}
+  </select>
+</mapper>
